@@ -1,0 +1,22 @@
+# Secretos
+.env
+secrets/
+*.token
+*.pem
+*.key
+
+# Imágenes y discos pesados
+*.iso
+*.vdi
+*.vmdk
+*.ova
+*.ovf
+*.vbox
+*.vbox-prev
+VirtualBox VMs/
+
+# Sistema
+.DS_Store
+
+# Python
+__pycache__/
