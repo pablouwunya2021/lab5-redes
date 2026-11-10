@@ -1,0 +1,32 @@
+# Certificado de https://lab5uvg.duckdns.org visto desde el host (Mac), 2026-11-10 11:08 CST
+# Comando: openssl s_client -connect lab5uvg.duckdns.org:443 -servername lab5uvg.duckdns.org -showcerts | openssl x509 -noout ...
+
+## HTTP redirige a HTTPS
+HTTP/1.1 301 Moved Permanently
+Location: https://lab5uvg.duckdns.org/
+
+## Certificado del servidor
+subject= /CN=lab5uvg.duckdns.org
+issuer= /C=US/O=Let's Encrypt/CN=YE2
+notBefore=Nov 10 16:01:06 2026 GMT
+notAfter=Feb  8 16:01:05 2027 GMT
+SHA256 Fingerprint=E2:56:1A:12:5C:9F:21:FF:DE:61:28:D7:59:4A:BC:DE:14:4A:24:7F:AF:73:FE:A4:AD:A5:4A:57:9B:37:F1:9D
+Public Key Algorithm: id-ecPublicKey
+ASN1 OID: prime256v1
+NIST CURVE: P-256
+DNS:lab5uvg.duckdns.org
+
+## Cadena y conexión
+ 0 s:/CN=lab5uvg.duckdns.org
+   i:/C=US/O=Let's Encrypt/CN=YE2
+ 1 s:/C=US/O=Let's Encrypt/CN=YE2
+   i:/C=US/O=ISRG/CN=Root YE
+ 2 s:/C=US/O=ISRG/CN=Root YE
+   i:/C=US/O=Internet Security Research Group/CN=ISRG Root X2
+ 3 s:/C=US/O=Internet Security Research Group/CN=ISRG Root X2
+   i:/C=US/O=Internet Security Research Group/CN=ISRG Root X1
+    Protocol  : TLSv1.3
+    Cipher    : AEAD-CHACHA20-POLY1305-SHA256
+
+## curl sin -k (el Mac confía en el certificado)
+HTTP 200, verificación SSL: 0 (0 = OK)
