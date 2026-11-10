@@ -1,0 +1,58 @@
+% Preámbulo del informe: se agrega a la plantilla LaTeX de pandoc (opción -H).
+% Estilo de artículo clásico: Latin Modern, encabezados con el título de la sección, tablas booktabs,
+% figuras en su lugar y bloques de código enmarcados.
+
+\usepackage{newunicodechar}
+\newunicodechar{→}{\ensuremath{\rightarrow}}
+
+% Figuras exactamente donde están en el texto (no flotan a otra página)
+\usepackage{float}
+\floatplacement{figure}{H}
+
+\usepackage{caption}
+\captionsetup{font=small, labelfont=bf, labelsep=period, justification=justified,
+              singlelinecheck=true, margin=8mm, skip=6pt}
+\setlength{\abovecaptionskip}{6pt}
+
+% Encabezado y pie de página
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\itshape Laboratorio 5: WordPress en arquitectura de 2 capas}
+\fancyhead[R]{\small\itshape\nouppercase{\leftmark}}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\sectionmark}[1]{\markboth{\thesection\quad #1}{}}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\small\thepage}\renewcommand{\headrulewidth}{0pt}}
+\setlength{\headheight}{14pt}
+
+% Títulos de sección con un poco más de aire
+\usepackage{titlesec}
+\titlespacing*{\section}{0pt}{3.2ex plus 1ex minus .2ex}{1.6ex plus .2ex}
+\titlespacing*{\subsection}{0pt}{2.6ex plus 1ex minus .2ex}{1.1ex plus .2ex}
+
+% Índice: en su propia página
+\usepackage{etoolbox}
+\pretocmd{\tableofcontents}{\thispagestyle{plain}}{}{}
+\apptocmd{\tableofcontents}{\clearpage}{}{}
+
+% Tablas: letra algo menor y filas menos apretadas
+\AtBeginEnvironment{longtable}{\small}
+\renewcommand{\arraystretch}{1.18}
+
+% Código: letra pequeña, saltos de línea automáticos y marco fino
+\usepackage{fvextra}
+\RecustomVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}, fontsize=\footnotesize,
+  breaklines, breakanywhere, frame=single, framerule=0.4pt, rulecolor=\color{black!35},
+  framesep=2.2mm, xleftmargin=1mm, xrightmargin=1mm}
+\RecustomVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\footnotesize, breaklines, breakanywhere,
+  frame=single, framerule=0.4pt, rulecolor=\color{black!35}, framesep=2.2mm,
+  xleftmargin=1mm, xrightmargin=1mm}
+
+% Rutas y nombres largos en línea: permitir cortes en / . _ -
+\usepackage{xurl}
+\AtBeginDocument{\urlstyle{tt}}
+
+% Listas compactas
+\usepackage{enumitem}
+\setlist{itemsep=2pt, topsep=4pt}

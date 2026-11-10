@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 660" font-family="Helvetica, Arial, sans-serif" font-size="14">
+  <defs>
+    <marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1f2937"/>
+    </marker>
+    <marker id="flr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b91c1c"/>
+    </marker>
+  </defs>
+
+  <!-- Internet (salida por NAT de cada VM) -->
+  <rect x="380" y="14" width="600" height="68" rx="14" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2" stroke-dasharray="7 5"/>
+  <text x="680" y="40" text-anchor="middle" font-weight="bold" fill="#5b21b6">Internet</text>
+  <text x="680" y="62" text-anchor="middle" fill="#374151" font-size="13">Let's Encrypt (ACME) · DuckDNS (API y DNS del dominio) · repositorios de Ubuntu</text>
+  <line x1="500" y1="150" x2="500" y2="82" stroke="#7c3aed" stroke-width="2" stroke-dasharray="5 4"/>
+  <line x1="850" y1="150" x2="850" y2="82" stroke="#7c3aed" stroke-width="2" stroke-dasharray="5 4"/>
+  <text x="508" y="122" fill="#5b21b6" font-size="12">NAT (enp0s8, 10.0.2.15)</text>
+  <text x="858" y="122" fill="#5b21b6" font-size="12">NAT (enp0s8, 10.0.2.15)</text>
+
+  <!-- Host -->
+  <rect x="20" y="150" width="260" height="232" rx="10" fill="#f9fafb" stroke="#4b5563" stroke-width="2"/>
+  <text x="150" y="176" text-anchor="middle" font-weight="bold">Host: MacBook (macOS, arm64)</text>
+  <text x="34" y="202">VirtualBox 7.2.22 (Tipo 2)</text>
+  <text x="34" y="224">bridge100: <tspan font-weight="bold">192.168.56.1</tspan></text>
+  <text x="34" y="250">/etc/hosts:</text>
+  <text x="34" y="270" font-family="Menlo, monospace" font-size="12">192.168.56.11 lab5uvg.duckdns.org</text>
+  <text x="34" y="298">Clientes: Safari (HTTPS),</text>
+  <text x="34" y="318">FileZilla (SFTP), ssh/scp,</text>
+  <text x="34" y="338">verifica-lab.sh (nc, curl)</text>
+  <text x="34" y="366" fill="#6b7280" font-size="12">Solo cliente: no ofrece servicios</text>
+
+  <!-- web01 -->
+  <rect x="370" y="150" width="260" height="232" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="500" y="176" text-anchor="middle" font-weight="bold" fill="#1e40af">web01 · capa web</text>
+  <text x="384" y="202">Ubuntu Server 26.04 LTS</text>
+  <text x="384" y="224">enp0s9: <tspan font-weight="bold">192.168.56.11</tspan></text>
+  <text x="384" y="250">Apache 2.4.66 + PHP 8.5.4</text>
+  <text x="384" y="270">WordPress 7.1.4, cliente MySQL</text>
+  <text x="384" y="296">Escucha: 80, 443, SSH 2222</text>
+  <text x="384" y="322">UFW: deny entrante;</text>
+  <text x="384" y="342">80 y 443 abiertos;</text>
+  <text x="384" y="362">2222 solo desde 192.168.56.0/24</text>
+
+  <!-- db01 -->
+  <rect x="720" y="150" width="260" height="232" rx="10" fill="#ecfdf5" stroke="#059669" stroke-width="2"/>
+  <text x="850" y="176" text-anchor="middle" font-weight="bold" fill="#065f46">db01 · capa de datos</text>
+  <text x="734" y="202">Ubuntu Server 26.04 LTS</text>
+  <text x="734" y="224">enp0s9: <tspan font-weight="bold">192.168.56.12</tspan></text>
+  <text x="734" y="250">MySQL 8.4.11</text>
+  <text x="734" y="270">wordpress_db · wp_user@.11</text>
+  <text x="734" y="296">Escucha: 192.168.56.12:33306,</text>
+  <text x="734" y="316">SSH 2223</text>
+  <text x="734" y="342">UFW: deny entrante; 2223 desde</text>
+  <text x="734" y="362">la red; 33306 solo desde .11</text>
+
+  <!-- Conexiones a la red host-only -->
+  <line x1="150" y1="382" x2="150" y2="430" stroke="#4b5563" stroke-width="3"/>
+  <line x1="500" y1="382" x2="500" y2="430" stroke="#2563eb" stroke-width="3"/>
+  <line x1="850" y1="382" x2="850" y2="430" stroke="#059669" stroke-width="3"/>
+  <text x="158" y="412" font-size="12" fill="#374151">.1</text>
+  <text x="508" y="412" font-size="12" fill="#374151">.11 (IP fija)</text>
+  <text x="858" y="412" font-size="12" fill="#374151">.12 (IP fija)</text>
+
+  <!-- Red host-only -->
+  <rect x="20" y="430" width="960" height="40" rx="8" fill="#e0e7ff" stroke="#4338ca" stroke-width="1.5"/>
+  <text x="500" y="456" text-anchor="middle" font-weight="bold" fill="#312e81">Red host-only lab5-hostonly · 192.168.56.0/24 (vmnet, sin gateway; DHCP solo .1–.10)</text>
+
+  <!-- Flujos permitidos -->
+  <line x1="150" y1="512" x2="496" y2="512" stroke="#1f2937" stroke-width="2" marker-end="url(#fl)"/>
+  <circle cx="150" cy="512" r="4" fill="#1f2937"/>
+  <text x="160" y="504" font-size="13">HTTPS 443/TCP · HTTP 80 → 301 · SSH/SFTP 2222/TCP</text>
+
+  <line x1="150" y1="552" x2="846" y2="552" stroke="#1f2937" stroke-width="2" marker-end="url(#fl)"/>
+  <circle cx="150" cy="552" r="4" fill="#1f2937"/>
+  <text x="160" y="544" font-size="13">SSH 2223/TCP (administración de db01, incluida la base de datos con sudo mysql)</text>
+
+  <line x1="500" y1="592" x2="846" y2="592" stroke="#1f2937" stroke-width="2" marker-end="url(#fl)"/>
+  <circle cx="500" cy="592" r="4" fill="#1f2937"/>
+  <text x="510" y="584" font-size="13">MySQL 33306/TCP (WordPress → wordpress_db)</text>
+
+  <!-- Flujo bloqueado -->
+  <line x1="150" y1="636" x2="846" y2="636" stroke="#b91c1c" stroke-width="2" stroke-dasharray="8 5" marker-end="url(#flr)"/>
+  <text x="160" y="628" font-size="13" fill="#b91c1c">Bloqueado: host → db01 MySQL 33306/3306 y SSH 22 en ambas VM (UFW y puertos cambiados)</text>
+</svg>
