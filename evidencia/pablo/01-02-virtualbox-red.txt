@@ -1,0 +1,52 @@
+# Hipervisor y red host-only, desde el host (Mac), 2026-11-10 12:15 CST
+
+## $ VBoxManage --version
+7.2.22r175245
+
+## $ VBoxManage list hostonlynets
+Name:            lab5-hostonly
+GUID:            fd40137f-bb31-41d4-aa86-3c4dde339a41
+
+State:           Enabled
+NetworkMask:     255.255.255.0
+LowerIP:         192.168.56.1
+UpperIP:         192.168.56.10
+VBoxNetworkName: hostonly-lab5-hostonly
+
+## $ ifconfig bridge100   (interfaz del Mac en la red host-only)
+bridge100: flags=8a63<UP,BROADCAST,SMART,RUNNING,ALLMULTI,SIMPLEX,MULTICAST> mtu 1500
+	inet 192.168.56.1 netmask 0xffffff00 broadcast 192.168.56.255
+		ipfilter disabled flags 0x0
+	member: vmenet0 flags=3<LEARNING,DISCOVER>
+	member: vmenet1 flags=3<LEARNING,DISCOVER>
+		8:0:27:f:9f:4 Vlan1 vmenet1 1180 flags=0<>
+		8:0:27:43:e3:b4 Vlan1 vmenet0 1177 flags=0<>
+	status: active
+
+## $ VBoxManage showvminfo web01 (resumen)
+name="web01"
+ostype="Ubuntu (ARM 64-bit)"
+memory=2048
+firmware="EFI"
+cpus=2
+VMState="running"
+macaddress1="080027D7A91E"
+nic1="nat"
+hostonly-network2="lab5-hostonly"
+macaddress2="08002743E3B4"
+nic2="hostonlynetwork"
+CurrentSnapshotName="servicios-ok"
+
+## $ VBoxManage showvminfo db01 (resumen)
+name="db01"
+ostype="Ubuntu (ARM 64-bit)"
+memory=2048
+firmware="EFI"
+cpus=2
+VMState="running"
+macaddress1="080027B73B2A"
+nic1="nat"
+hostonly-network2="lab5-hostonly"
+macaddress2="0800270F9F04"
+nic2="hostonlynetwork"
+CurrentSnapshotName="servicios-ok"

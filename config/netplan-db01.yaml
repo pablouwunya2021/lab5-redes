@@ -1,0 +1,10 @@
+# /etc/netplan/50-cloud-init.yaml en db01
+# Reemplazar los nombres de interfaz por los reales (ip -br a). Después:
+#   sudo chmod 600 /etc/netplan/*.yaml && sudo netplan try
+network:
+  version: 2
+  ethernets:
+    enp0s8:                      # adaptador 1 (NAT, internet)
+      dhcp4: true
+    enp0s9:                      # adaptador 2 (host-only)
+      addresses: [192.168.56.12/24]

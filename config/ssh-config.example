@@ -1,0 +1,11 @@
+# Pegar en ~/.ssh/config del host (Windows: C:\Users\USUARIO\.ssh\config)
+# Antes de cambiar los puertos (guía 15) iba Port 22; después de scripts/vm/ssh-ufw.sh, 2222 y 2223.
+Host web01
+    HostName 192.168.56.11
+    User sysadmin
+    Port 2222
+
+Host db01
+    HostName 192.168.56.12
+    User sysadmin
+    Port 2223
