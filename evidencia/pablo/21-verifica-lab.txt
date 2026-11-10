@@ -1,0 +1,22 @@
+# ./scripts/verifica-lab.sh desde el host (Mac), 2026-11-10 12:13 CST
+== Alcance
+  [PASA]  ping 192.168.56.11
+  [PASA]  ping 192.168.56.12
+== web01 (192.168.56.11): lo que SI debe estar abierto
+  [PASA]  192.168.56.11:2222 abierto
+  [PASA]  192.168.56.11:443 abierto
+  [PASA]  192.168.56.11:80 abierto
+== web01: lo que debe estar cerrado
+  [PASA]  192.168.56.11:22 cerrado
+== db01 (192.168.56.12): SSH abierto, MySQL cerrado para el host (solo web01 puede)
+  [PASA]  192.168.56.12:2223 abierto
+  [PASA]  192.168.56.12:33306 cerrado
+  [PASA]  192.168.56.12:3306 cerrado
+  [PASA]  192.168.56.12:22 cerrado
+== Resolución local de lab5uvg.duckdns.org (archivo hosts)
+  [PASA]  /etc/hosts: lab5uvg.duckdns.org -> 192.168.56.11
+== HTTP y HTTPS por nombre
+  [PASA]  http:// redirige (301) a https://
+  [PASA]  https:// responde 200 con certificado válido (Let's Encrypt)
+
+Resultado: 13 pasan, 0 fallan
